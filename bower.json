@@ -1,0 +1,32 @@
+{
+  "name": "react-tutorial",
+  "description": "Code from the React tutorial.",
+  "main": "public/scripts/core.js",
+  "authors": [
+    "peixin liu"
+  ],
+  "license": "see LICENSE file",
+  "keywords": [
+    "react",
+    "tutorial",
+    "comment",
+    "example"
+  ],
+  "homepage": "https://github.com/beiming/react-tutorial",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/scripts/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "^15.1.0",
+    "babel": "*",
+    "jquery": "^2.2.4",
+    "marked": "^0.3.5",
+    "lodash": "^4.13.1"
+  }
+}

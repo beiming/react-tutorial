@@ -14,6 +14,7 @@ var fs = require('fs');
 var path = require('path');
 var express = require('express');
 var bodyParser = require('body-parser');
+var _ = require('lodash')
 var app = express();
 
 var COMMENTS_FILE = path.join(__dirname, 'comments.json');
@@ -33,6 +34,32 @@ app.use(function(req, res, next) {
     // Disable caching so we'll always get the latest comments.
     res.setHeader('Cache-Control', 'no-cache');
     next();
+});
+
+app.delete('/api/comments/:id', function(req, res) {
+  commendId = req.params.id;
+  if(_.isEmpty(commendId)) {
+    res.status(500).send('invalid comment id');
+    return;
+  }
+  commendId = _.parseInt(commendId);
+  fs.readFile(COMMENTS_FILE, function(err, data){
+    if(err) {
+      console.error(err);
+      process.exit(1);
+    }
+    var comments = JSON.parse(data);
+    _.remove(comments, function(comment) {
+      return comment.id === commendId
+    });
+    fs.writeFile(COMMENTS_FILE, JSON.stringify(comments, null, 4), function(err) {
+      if(err) {
+        console.error(err);
+        process.exit(1);
+      }
+      res.json(comments);
+    });
+  });
 });
 
 app.get('/api/comments', function(req, res) {

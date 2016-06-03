@@ -1,3 +1,9 @@
+Fork from https://github.com/reactjs/react-tutorial
+
+
+- complete tuorial
+- add delete logic
+
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 # React Tutorial
